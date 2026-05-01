@@ -1,0 +1,4 @@
+{
+	"typescript.tsdk": "client/node_modules/typescript/lib",
+	"postman.settings.dotenv-detection-notification-visibility": false
+}
