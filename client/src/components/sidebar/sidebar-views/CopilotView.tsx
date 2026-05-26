@@ -79,7 +79,7 @@ function CopilotView() {
                 onClick={generateCode}
                 disabled={isRunning}
             >
-                {isRunning ? "Generating..." : "Generate Code"}
+                {isRunning ? "Sending..." : "Send"}
             </button>
             {output && (
                 <div className="flex justify-end gap-4 pt-2">

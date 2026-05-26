@@ -1,7 +1,7 @@
 import { ICopilotContext } from "@/types/copilot"
 import { createContext, ReactNode, useContext, useState } from "react"
 import toast from "react-hot-toast"
-import axiosInstance from "../api/pollinationsApi"
+import axiosInstance from "../api/copilotApi"
 
 const CopilotContext = createContext<ICopilotContext | null>(null)
 
@@ -30,24 +30,12 @@ const CopilotContextProvider = ({ children }: { children: ReactNode }) => {
 
             toast.loading("Generating code...")
             setIsRunning(true)
-            const response = await axiosInstance.post("/", {
-                messages: [
-                    {
-                        role: "system",
-                        content:
-                            "You are a code generator copilot for project named Code Sync. Generate code based on the given prompt without any explanation. Return only the code, formatted in Markdown using the appropriate language syntax (e.g., js for JavaScript, py for Python). Do not include any additional text or explanations. If you don't know the answer, respond with 'I don't know'.",
-                    },
-                    {
-                        role: "user",
-                        content: input,
-                    },
-                ],
-                model: "mistral",
-                private: true,
+            const response = await axiosInstance.post("/generate", {
+                prompt: input,
             })
             if (response.data) {
                 toast.success("Code generated successfully")
-                const code = response.data
+                const code = response.data.output
                 if (code) setOutput(code)
             }
             setIsRunning(false)

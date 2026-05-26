@@ -46,7 +46,7 @@ A collaborative, real-time code editor where users can seamlessly code together.
 1. **Fork this repository:** Click the Fork button located in the top-right corner of this page.
 2. **Clone the repository:**
    ```bash
-   git clone https://github.com/<your-username>/CodeCollab.git
+   git clone https://github.com/<your-username>/Code-Sync.git
    ```
 3. **Create .env file:**
    Inside the client and server directories create `.env` and set:
@@ -61,7 +61,14 @@ A collaborative, real-time code editor where users can seamlessly code together.
 
    ```bash
    PORT=3000
+   JUDGE0_URL=http://localhost:2358
+   GEMINI_API_KEY=<your_gemini_api_key>
+   GEMINI_MODEL=gemini-flash-latest
    ```
+
+   Notes:
+   - The app now executes code through your backend using Judge0-compatible endpoints.
+   - Run a local Judge0 CE instance (for example with Docker) and keep `JUDGE0_URL` pointed to it.
 
 4. **Install dependencies:**
    ```bash
